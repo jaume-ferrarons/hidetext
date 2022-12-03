@@ -4,14 +4,20 @@ from .textspan import TextSpan
 
 
 class Censor:
-    def __init__(self, censor_char: str = "*"):
+    def __init__(self, censor_char: str = "*", fixed_length: int = None):
         self._censor_char = censor_char
+        self._fixed_length = fixed_length
 
     def censor(self, text: str, spans: List[TextSpan]) -> str:
-        censored_text = text
+        censored_text = []
+        last_end = 0
         for span in spans:
-            text_before = censored_text[: span.start]
-            replacement = self._censor_char * span.length
-            text_after = censored_text[span.end :]
-            censored_text = text_before + replacement + text_after
-        return censored_text
+            censored_text.append(text[last_end : span.start])
+            replacement_length = (
+                self._fixed_length if self._fixed_length else span.length
+            )
+            replacement = self._censor_char * replacement_length
+            censored_text.append(replacement)
+            last_end = span.end
+        censored_text.append(text[last_end:])
+        return "".join(censored_text)
