@@ -1,10 +1,10 @@
-from typing import List
+from typing import List, Optional
 
 from .textspan import TextSpan
 
 
 class Censor:
-    def __init__(self, censor_char: str = "*", fixed_length: int = None):
+    def __init__(self, censor_char: str = "*", fixed_length: Optional[int] = None):
         self._censor_char = censor_char
         self._fixed_length = fixed_length
 
