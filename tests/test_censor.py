@@ -29,3 +29,13 @@ class CensorTest(unittest.TestCase):
         spans = [TextSpan(16, 25, "WORD", "beautiful"), TextSpan(26, 29, "WORD", "dat")]
         censored_text = censor.censor(text, spans)
         self.assertEqual(censored_text, "Hello this is a **** ****.")
+
+    def test_censor_unordered_spans(self):
+        censor = Censor()
+        text = "My DNI is 43244328J Email: fdsfsd@gmail.com"
+        spans = [
+            TextSpan(start=27, end=43, kind="EMAIL", text="fdsfsd@gmail.com"),
+            TextSpan(start=10, end=19, kind="ID_CARD", text="43244328J"),
+        ]
+        censored_text = censor.censor(text, spans)
+        self.assertEqual(censored_text, "My DNI is ********* Email: ****************")

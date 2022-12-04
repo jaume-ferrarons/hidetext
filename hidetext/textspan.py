@@ -11,3 +11,8 @@ class TextSpan:
     @property
     def length(self) -> int:
         return self.end - self.start
+
+    def __lt__(self, other: "TextSpan") -> bool:
+        return self.start < other.start or (
+            self.start == other.start and self.end < other.end
+        )

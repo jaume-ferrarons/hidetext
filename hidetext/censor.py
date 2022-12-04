@@ -9,6 +9,7 @@ class Censor:
         self._fixed_length = fixed_length
 
     def censor(self, text: str, spans: List[TextSpan]) -> str:
+        spans.sort()
         censored_text = []
         last_end = 0
         for span in spans:

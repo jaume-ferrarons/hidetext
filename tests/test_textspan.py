@@ -7,3 +7,8 @@ class TextSpanTest(unittest.TestCase):
     def test_textspan_length(self):
         span = TextSpan(0, 4, "PERSON", "John")
         self.assertEqual(span.length, 4)
+
+    def test_textspan_sortable(self):
+        span1 = TextSpan(0, 4, "PERSON", "John")
+        span2 = TextSpan(10, 15, "PERSON", "Jimmy")
+        self.assertLess(span1, span2)

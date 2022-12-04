@@ -12,7 +12,6 @@ class Profanity(Filter):
 
     def search(self, text: str) -> List[TextSpan]:
         tokenized = self._tokens(text)
-        print(tokenized)
         return [token for token in tokenized if token.text in self.terms]
 
     def is_valid(self, text: str) -> bool:
