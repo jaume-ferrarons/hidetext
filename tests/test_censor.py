@@ -6,21 +6,21 @@ from hidetext import placeholders
 
 
 class CensorTest(unittest.TestCase):
-    def test_censor_char(self):
+    def test_censor_char(self) -> None:
         censor = Censor(placeholders.Character())
         text = "Hello this is a beautiful day"
         span = TextSpan(16, 25, "WORD", "beautiful")
         censored_text = censor.censor(text, [span])
         self.assertEqual(censored_text, "Hello this is a ********* day")
 
-    def test_censor_two_spans(self):
+    def test_censor_two_spans(self) -> None:
         censor = Censor(placeholders.Character(fixed_length=4))
         text = "Hello this is a beautiful day."
         spans = [TextSpan(16, 25, "WORD", "beautiful"), TextSpan(26, 29, "WORD", "dat")]
         censored_text = censor.censor(text, spans)
         self.assertEqual(censored_text, "Hello this is a **** ****.")
 
-    def test_censor_unordered_spans(self):
+    def test_censor_unordered_spans(self) -> None:
         censor = Censor(placeholders.Character())
         text = "My DNI is 43244328J Email: fdsfsd@gmail.com"
         spans = [

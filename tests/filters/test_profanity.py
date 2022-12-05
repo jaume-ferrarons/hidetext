@@ -5,12 +5,12 @@ from hidetext.filters import Profanity
 
 
 class ProfanityTest(unittest.TestCase):
-    def test_profanity_works(self):
+    def test_profanity_works(self) -> None:
         detector = Profanity()
         self.assertTrue(detector.is_valid("carallot"))
         self.assertFalse(detector.is_valid("hello"))
 
-    def test_profanity_search(self):
+    def test_profanity_search(self) -> None:
         detector = Profanity()
         profanities = detector.search("No siguis carallot!")
         self.assertListEqual(profanities, [TextSpan(10, 18, "PROFANITY", "carallot")])

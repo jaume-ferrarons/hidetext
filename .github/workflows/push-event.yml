@@ -27,7 +27,7 @@ jobs:
           poetry run black .
       - name: Run mypy
         run: |
-          poetry run mypy .
+          poetry run mypy --strict .
       - name: Test with pytest
         run: |
           poetry run python -m pytest --cov=hidetext --cov-report=xml
