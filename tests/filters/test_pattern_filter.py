@@ -19,4 +19,4 @@ class PatternFilterTest(unittest.TestCase):
     def test_pattern_search(self) -> None:
         stub = PatternFilterStub()
         self.assertListEqual(stub.search("bbbb"), [])
-        self.assertListEqual(stub.search("bbabb"), [TextSpan(2, 3, "STUB", "a")])
+        self.assertListEqual(stub.search("bb a bb"), [TextSpan(3, 4, "STUB", "a")])

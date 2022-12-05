@@ -20,7 +20,7 @@ class PatternFilter(Filter, ABC):
     def search(self, text: str) -> List[TextSpan]:
         results = []
         for pattern in self.patterns:
-            for match in re.finditer(self.patterns[pattern], text):
+            for match in re.finditer(r"\b" + self.patterns[pattern] + r"\b", text):
                 results.append(
                     TextSpan(match.start(), match.end(), self.name, match.group(0))
                 )

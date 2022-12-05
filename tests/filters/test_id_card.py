@@ -14,3 +14,8 @@ class IdCardTest(unittest.TestCase):
         filter = IdCard()
         dnis = filter.search("X0523821F")
         self.assertListEqual(dnis, [TextSpan(0, 9, "ID_CARD", "X0523821F")])
+
+    def test_no_dni_search(self) -> None:
+        filter = IdCard()
+        dnis = filter.search("12345678JA")
+        self.assertListEqual(dnis, [])
