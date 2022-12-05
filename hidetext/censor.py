@@ -1,12 +1,12 @@
-from typing import List, Optional
+from typing import List
 
 from .textspan import TextSpan
+from .placeholders import Placeholder
 
 
 class Censor:
-    def __init__(self, censor_char: str = "*", fixed_length: Optional[int] = None):
-        self._censor_char = censor_char
-        self._fixed_length = fixed_length
+    def __init__(self, placeholder: Placeholder):
+        self._placeholder = placeholder
 
     def censor(self, text: str, spans: List[TextSpan]) -> str:
         spans.sort()
@@ -14,10 +14,7 @@ class Censor:
         last_end = 0
         for span in spans:
             censored_text.append(text[last_end : span.start])
-            replacement_length = (
-                self._fixed_length if self._fixed_length else span.length
-            )
-            replacement = self._censor_char * replacement_length
+            replacement = self._placeholder.replace(span)
             censored_text.append(replacement)
             last_end = span.end
         censored_text.append(text[last_end:])
