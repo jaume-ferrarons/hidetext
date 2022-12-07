@@ -8,7 +8,14 @@ from . import placeholders
 
 
 class Hidetext:
-    filters: List[Filter] = [Email(), Phone(), Profanity(), IdCard()]
+    def __init__(self, language_code: str = "en") -> None:
+        self._language_code = language_code
+        self._filters: List[Filter] = [
+            Email(),
+            Phone(),
+            Profanity(self._language_code),
+            IdCard(),
+        ]
 
     def character(self, text: str) -> str:
         spans = self._get_text_spans(text)
@@ -24,5 +31,5 @@ class Hidetext:
 
     def _get_text_spans(self, text: str) -> List[TextSpan]:
         return list(
-            itertools.chain.from_iterable([f.search(text) for f in self.filters])
+            itertools.chain.from_iterable([f.search(text) for f in self._filters])
         )

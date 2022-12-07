@@ -5,7 +5,7 @@ from hidetext import Hidetext
 
 class HidetextTest(unittest.TestCase):
     def test_basic_character(self) -> None:
-        hide = Hidetext()
+        hide = Hidetext("ca")
         cleaned = hide.character("No siguis carallot!")
         self.assertEqual(cleaned, "No siguis ********!")
 
