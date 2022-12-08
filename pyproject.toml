@@ -1,8 +1,13 @@
 [tool.poetry]
 name = "hidetext"
-version = "0.1.0"
+version = "0.1.1"
 description = "Hides non-desired text"
 authors = ["Jaume Ferrarons <jaume.ferrarons@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/jaume-ferrarons/hidetext"
+repository = "https://github.com/jaume-ferrarons/hidetext"
+license = "MIT"
+keywords = ["text", "filter", "word", "pattern"]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"

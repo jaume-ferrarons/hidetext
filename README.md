@@ -2,7 +2,17 @@
 
 Extensible Python library to hide fragments of text.
 
+[![version](https://img.shields.io/pypi/v/hidetext?logo=pypi&logoColor=white)](https://pypi.org/project/hidetext/)
+[![build](https://github.com/jaume-ferrarons/hidetext/actions/workflows/push-event.yml/badge.svg)](https://github.com/jaume-ferrarons/hidetext/actions/workflows/push-event.yml)
+[![codecov](https://codecov.io/github/jaume-ferrarons/hidetext/branch/main/graph/badge.svg?token=MZQOAFBQ5I)](https://codecov.io/github/jaume-ferrarons/hidetext)
+
 ## Installation
+**Requirements**: python >= 3.8
+
+It can be easily installed with:
+```bash
+pip install -U hidetext
+```
 
 ## Basic usage
 
