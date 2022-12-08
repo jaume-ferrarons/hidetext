@@ -1,5 +1,5 @@
 import itertools
-from typing import List
+from typing import List, Optional
 from .filters.filter import Filter
 from .filters import Email, Phone, Profanity, IdCard
 from .censor import Censor
@@ -8,14 +8,20 @@ from . import placeholders
 
 
 class Hidetext:
-    def __init__(self, language_code: str = "en") -> None:
+    def __init__(
+        self, language_code: str = "en", filters: Optional[List[Filter]] = None
+    ) -> None:
         self._language_code = language_code
-        self._filters: List[Filter] = [
-            Email(),
-            Phone(),
-            Profanity(self._language_code),
-            IdCard(),
-        ]
+        self._filters = (
+            filters
+            if filters
+            else [
+                Email(),
+                Phone(),
+                Profanity(self._language_code),
+                IdCard(),
+            ]
+        )
 
     def character(self, text: str) -> str:
         spans = self._get_text_spans(text)
